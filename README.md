@@ -16,6 +16,7 @@ Add **hubot-darksky** to your `external-scripts.json`:
 
 ## Configuration
 - `HUBOT_DARK_SKY_API_KEY` an api key from [darksky.net](https://darksky.net/dev)
+- `HUBOT_DARK_SKY_GOOGLE_GEOCODE_API_KEY` an api key from the [Google Developer Console](https://developers.google.com/maps/documentation/geocoding/get-api-key) for the Google Geocoding API.
 - `HUBOT_DARK_SKY_DEFAULT_LOCATION` if unset, `weather` commands without a location will be ignored
 - `HUBOT_DARK_SKY_SEPARATOR` a configurable line separator for responses.  defaults to "\n"
 
@@ -29,4 +30,4 @@ Coming week: Drizzle on Sunday, with temperatures bottoming out at 21°C/70°F o
 ```
 
 ## Sources
-[darksky.coffee from hubot-scripts](https://github.com/github/hubot-scripts/blob/master/src/scripts/darksky.coffee) by [kyleslattery](https://github.com/kyleslattery)
+[darksky.js from hubot-scripts](https://github.com/github/hubot-scripts/blob/master/src/scripts/darksky.js) by [schwingbat](https://github.com/schwingbat)
