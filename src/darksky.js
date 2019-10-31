@@ -2,22 +2,22 @@ module.exports = robot => {
   robot.respond(/weather ?(.+)?/i, async msg => {
     const location =
       msg.match[1] || process.env.HUBOT_DARK_SKY_DEFAULT_LOCATION;
+    if (!location) {
+      return;
+    }
+
     const options = {
       separator: process.env.HUBOT_DARK_SKY_SEPARATOR || "\n"
     };
 
-    const googleurl = "https://maps.googleapis.com/maps/api/geocode/json";
-    const q = {
-      sensor: false,
-      address: location,
-      key: process.env.HUBOT_DARK_SKY_GOOGLE_GEOCODE_API_KEY
-    };
+    const encodedLocation = encodeURIComponent(location);
+    const geocodeKey = process.env.HUBOT_DARK_SKY_GOOGLE_GEOCODE_API_KEY;
 
-    msg.http(googleurl).query(q).get((err, res, body) => {
+    let url = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodedLocation}&key=${geocodeKey}`;
+
+    msg.http(url).get((err, res, body) => {
       if (err) {
         msg.send(`A geocode API error occurred: ${err.message}`);
-        msg.send(JSON.stringify(err));
-        msg.send(JSON.stringify(res));
         return;
       }
 
