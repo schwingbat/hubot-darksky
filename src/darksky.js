@@ -16,6 +16,7 @@ module.exports = robot => {
     msg.http(googleurl).query(q).get((err, res, body) => {
       if (err) {
         msg.send(`A geocode API error occurred: ${err.message}`);
+        msg.send(JSON.stringify(res));
         return;
       }
 
